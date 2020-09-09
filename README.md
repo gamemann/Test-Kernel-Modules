@@ -9,7 +9,7 @@ To load a module, simply use `make` to build the modules and then the following 
 insmod $NAME
 ```
 
-Where `$NAME` is the kernel's name you want loaded (e.g. `kern.ko`). Similar, you can unload the module with the following:
+Where `$NAME` is the kernel's name you want loaded (e.g. `kern.ko`). Similarly, you can unload the module with the following command:
 
 ```
 rmmod $NAME
