@@ -73,7 +73,6 @@ static unsigned int process_packet(void *priv, struct sk_buff *skb, const struct
 
             // Recalculate UDP header checksum.
             udplen = ntohs(iph->tot_len) - (iph->ihl * 4);
-            skb->csum = 0;
 
             udph->check = 0;
             udph->check = udp_v4_check(udplen, iph->saddr, iph->daddr, csum_partial((char *)udph, udplen, 0));
