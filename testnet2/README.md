@@ -1,6 +1,6 @@
 # More Advanced Netfilter Kernel Module
 ## Description
-A more complex netfilter kernel module. In this module, any incoming UDP packets with the destination port `8888` will be sent back to the host it came from. Thing is basically a ping-pong effect.
+A more complex netfilter kernel module. In this module, any incoming UDP packets with the destination port `8888` will be sent back to the host it came from. Basically a ping-pong effect.
 
 Two lines will be outputted every time an incoming packet matches the above and is sent back. Output will be located in `/var/log/kern.log` and here is an output example:
 
