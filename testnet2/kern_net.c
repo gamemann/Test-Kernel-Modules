@@ -105,7 +105,6 @@ static struct nf_hook_ops netfilter_hook =
     .priority = NF_IP_PRI_FIRST
 };
 
-
 static int __init test_init(void)
 {
     printk(KERN_INFO "The module has been initiated!");
@@ -115,7 +114,6 @@ static int __init test_init(void)
 
 static void __exit test_exit(void)
 {
-
     nf_unregister_net_hook(&init_net, &netfilter_hook);
 
     printk(KERN_INFO "The module has exited!");
