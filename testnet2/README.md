@@ -19,6 +19,6 @@ Sep 17 00:25:22 test02 kernel: [112626.489649] Detected UDP packet from 10.50.0.
 Sep 17 00:25:22 test02 kernel: [112626.489656] Sending packet back to 10.50.0.4 from 10.50.0.3. Dst port => 18305. Source port => 8888. Source starting MAC byte => 1a, source ending MAC byte => a6. Destination starting MAC byte => ae. Destination ending MAC byte => 6d. UDP length => 88.
 ```
 
-**Note** - For some reason, packets with the UDP payload length of > 85 bytes result in bad UDP checksums for me. I'm not sure if this is just me, but I've tried three different methods to calculate the checksum and they've resulted in the same results.
+**Note** - At first, I was using the `udp_v4_check(int len, __be32 saddr, __be32 daddr, __wsum base)` function to calculate the UDP checksum. This worked for packets up to 85 bytes in payload size. However, anything larger than that would result in a bad checksum. I ended up finding the function `udp_set_csum(bool nocheck, struct sk_buff *skb, __be32 saddr, __be32 daddr, int len)` which uses `udp_v4_check()` as well, but performs it properly which fixed packets over 85 bytes in size resulting in bad checksums.
 
 I used my [Packet Flooding](https://github.com/gamemann/Packet-Flooder) tool to test this.
