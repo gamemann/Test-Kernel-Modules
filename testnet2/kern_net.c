@@ -74,7 +74,6 @@ static unsigned int process_packet(void *priv, struct sk_buff *skb, const struct
             // Recalculate UDP header checksum.
             udplen = ntohs(iph->tot_len) - (iph->ihl * 4);
 
-            udph->check = 0;
             udp_set_csum(false, skb, iph->saddr, iph->daddr, udplen);
 
             printk(KERN_INFO "Sending packet back to %pI4 from %pI4. Dst port => %d. Source port => %d. Source starting MAC byte => %x, source ending MAC byte => %x. Destination starting MAC byte => %x. Destination ending MAC byte => %x. UDP length => %d.\n", &iph->daddr, &iph->saddr, ntohs(udph->dest), ntohs(udph->source), eth->h_source[0], eth->h_source[5], eth->h_dest[0], eth->h_dest[5], udplen);
